@@ -1,6 +1,6 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useEffect } from 'react'
 
-import { validate } from "../../shared/util/validators";
+import { validate } from "../../util/validators";
 
 import "./Input.css";
 
@@ -23,12 +23,18 @@ const inputReducer = (state,action) => {
 };
 
 const Input = props => {
-
     const [inputState, dispatch] = useReducer(inputReducer, {
         value: '',
         isValid: false,
         isTouched: false
     });
+
+    const { id, onInput } = props;
+    const { value, isValid } = inputState;
+
+    useEffect(() => {
+        props.onInput(id, value, isValid)
+    }, [id, value, isValid, onInput]);
 
     const changeHandler = event =>{
         dispatch({type: 'CHANGE', val: event.target.value, validators: props.validators })
@@ -65,7 +71,7 @@ const Input = props => {
         >
             <label htmlFor={props.id}>{props.label}</label>
             {element}
-            {!inputState.isValid && <p>{props.errorText}</p> }
+            {!inputState.isValid && inputState.isTouched && <p>{props.errorText}</p> }
         </div>
     )
 }
