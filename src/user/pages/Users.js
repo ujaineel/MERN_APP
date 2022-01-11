@@ -3,16 +3,17 @@ import React from 'react';
 import UsersList from '../components/UsersList';
 
 const Users = () => {
-    const USERS = [{
-        id: "u1",
-        name: "James Bond",
-        image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.freepsdbazaar.com%2Fwp-content%2Fuploads%2F2020%2F06%2Fsky-night%2Fnight-sky-049.jpg&f=1&nofb=1",
-        places: 3
-    }];
+  const USERS = [
+    {
+      id: 'u1',
+      name: 'Max Schwarz',
+      image:
+        'https://images.pexels.com/photos/839011/pexels-photo-839011.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+      places: 3
+    }
+  ];
 
-    return (
-        <UsersList items={USERS} />
-    );
-}
+  return <UsersList items={USERS} />;
+};
 
-export default Users
+export default Users;
